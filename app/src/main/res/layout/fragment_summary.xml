@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.lrm.cupcake.model.OrderViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.SummaryFragment">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/pink_600"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/back_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_back_icon"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:importantForAccessibility="no"/>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/app_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/order_summary"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/back_icon"
+                        android:layout_marginStart="20dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:id="@+id/order_summary_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/quantity"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="12"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="@{viewModel.quantity.toString()}"/>
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/dividerHorizontal"
+                android:layout_marginTop="10dp"/>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/flavor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/flavor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/vanilla"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="@{viewModel.flavor}"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/dividerHorizontal"
+                android:layout_marginTop="10dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pickup_date"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Sunday"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:text="@{viewModel.date}"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?attr/dividerHorizontal"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/order_summary_ll"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{@string/total_price(viewModel.price)}"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/send_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/send"
+            app:layout_constraintTop_toBottomOf="@id/total"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/pink_600"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/pink_600"
+            app:layout_constraintTop_toBottomOf="@id/send_button"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/white"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
